@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Header from "../components/Header";
 import Nav from "../components/Nav"
+import requests from '../utils/requests';
 import Results from '../components/Results';
-import request from '../utils/request';
 
 export default function Home(props) {
   console.log(props)
@@ -27,13 +27,13 @@ export default function Home(props) {
 export async function getServerSideProps(context){
   const genre = context.query.genre;
 
-  const request = await fetch(
-  `https://api.themoviedb.org/3${request[genre]?.url 
-      || request.fetchTreding.url}`).then(res=> res.json());
+  const requests = await fetch(
+  `https://api.themoviedb.org/3/movie${requests[genre]?.url}`
+    ).then((res) => res.json());
 
-      return {
+    return {
         props:{
-          results:request.results,
+          results:requests.results,
         },
-      };
+      }
 } 
